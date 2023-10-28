@@ -16,8 +16,6 @@ const TempSlider = ({ threshold, setThreshold }) => {
     fontSize: "sm",
   };
 
-  console.log("SLIDER:", threshold);
-
   return (
     <Box pt={6} pb={2} w="100%">
       <Slider onChange={(val) => setThreshold(val)} defaultValue={80}>

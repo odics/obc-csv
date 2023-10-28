@@ -9,7 +9,7 @@ import {
 import "../../App.css";
 
 const Map = ({
-  csv,
+  data,
   selectedLoc,
   setSelectedLoc,
   setActiveDataPoint,
@@ -37,10 +37,11 @@ const Map = ({
     </Flex>
   ) : (
     <GoogleMap mapContainerClassName="map-container" zoom={10} center={center}>
-      {csv.map((marker, index) => {
+      {data.map((marker, index) => {
         if (marker.SCORE <= tempThreshold) {
           return (
             <MarkerF
+              key={index}
               position={{
                 lat: Number(marker.LATITUDE),
                 lng: Number(marker.LONGITUDE),

@@ -15,8 +15,8 @@ import { AiFillCaretDown, AiFillCaretUp } from "react-icons/ai";
 // Custom components
 import Map from "./components/map/Map";
 import TempSlider from "./components/slider/Slider";
-import Slider from "./components/slider/Slider";
 import DataRow from "./components/datarow/DataRow";
+import DateFilter from "./components/datefilter/DateFilter";
 
 // Data
 import csv from "./data/ta_exceedences.csv";
@@ -45,6 +45,7 @@ function App() {
   const { scoreSortDirection, scoreChangeDirection } = useScoreSort();
 
   const [displayData, setDisplayData] = useState(csv);
+  const [sortedData, setSortedData] = useState(csv);
   const [selectedLoc, setSelectedLoc] = useState(null);
   const [activeDataPoint, setActiveDataPoint] = useState(null);
   const [tempThreshold, setTempThreshold] = useState(80);
@@ -75,7 +76,7 @@ function App() {
             align="center"
             gap="1rem"
             onClick={() => {
-              setDisplayData(sortDates(unsortedData, dateSortDirection));
+              setDisplayData(sortDates(sortedData, dateSortDirection));
               dateChangeDirection();
             }}
             cursor="pointer"
@@ -92,7 +93,7 @@ function App() {
             gap="1rem"
             cursor="pointer"
             onClick={() => {
-              setDisplayData(sortId(unsortedData, idSortDirection));
+              setDisplayData(sortId(sortedData, idSortDirection));
               idChangeDirection();
             }}
           >
@@ -105,7 +106,7 @@ function App() {
             gap="1rem"
             cursor="pointer"
             onClick={() => {
-              setDisplayData(sortPosition(unsortedData, positionSortDirection));
+              setDisplayData(sortPosition(sortedData, positionSortDirection));
               positionChangeDirection();
             }}
           >
@@ -127,7 +128,7 @@ function App() {
             align="center"
             cursor="pointer"
             onClick={() => {
-              setDisplayData(sortScore(unsortedData, scoreSortDirection));
+              setDisplayData(sortScore(sortedData, scoreSortDirection));
               scoreChangeDirection();
             }}
           >
@@ -162,6 +163,7 @@ function App() {
                 score={item.SCORE}
                 index={index}
                 color={color}
+                key={index}
               />
             );
           }
@@ -174,7 +176,7 @@ function App() {
         right="2rem"
       >
         <Map
-          csv={csv}
+          data={sortedData}
           selectedLoc={selectedLoc}
           setSelectedLoc={setSelectedLoc}
           setActiveDataPoint={setActiveDataPoint}
@@ -194,6 +196,23 @@ function App() {
             <TempSlider
               threshold={tempThreshold}
               setThreshold={setTempThreshold}
+            />
+          </Flex>
+        </Flex>
+        <Flex
+          direction="column"
+          w="100%"
+          gap="1rem"
+          border="1px"
+          borderRadius="md"
+          padding="1rem"
+        >
+          <Text fontWeight="bold">Filter by date range</Text>
+          <Flex gap="1rem" w="100%">
+            <DateFilter
+              data={unsortedData}
+              setSortedData={setSortedData}
+              setDisplayData={setDisplayData}
             />
           </Flex>
         </Flex>
