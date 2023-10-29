@@ -1,8 +1,14 @@
-# React + Vite
+# One Big Circle technical assessment
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This repo contains work pertaining to the frontend technical assessment provided by One Big Circle.
 
-Currently, two official plugins are available:
+To run locally:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Clone the repo
+- Run npm i
+- Run npm run dev
+
+Dependencies:
+
+- Google maps react
+- Chakra UI
