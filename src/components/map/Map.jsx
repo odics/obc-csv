@@ -20,7 +20,7 @@ const Map = ({
     return formattedDate.toLocaleDateString();
   };
   const { isLoaded } = useLoadScript({
-    googleMapsApiKey: "AIzaSyDbaGqBCOSAkWzNmFHXNZVzSAOfqbv_4uE",
+    googleMapsApiKey: import.meta.env.VITE_GOOGLE_API_KEY,
   });
 
   const center = useMemo(() => ({ lat: 51.45, lng: -0.01 }), []);
